@@ -44,7 +44,21 @@
         };
       },
 
-      
+      increase: function(e) {
+        console.log(this); //COunter parent component
+
+        var currentCount = this.state.count;
+
+        if (e.shiftKey) {
+          currentCount += 10;
+        } else {
+          currentCount += 1;
+        }
+
+        this.setState({
+          count: currentCount
+        });
+      },
 
       render: function() {
         var backgroundStyle = {
@@ -66,14 +80,44 @@
           lineHeight: "3px"
         };
 
+        var PlusButton = React.createClass({
+          render: function() {
+            return (
+              <button onClick={this.props.clickHandler}>
+              +
+              </button>
+            );
+          }
+        });
+
         return (
           <div style={backgroundStyle}>
             <Counter display={this.state.count}/>
-            <button onClick={this.increase} style={buttonStyle}>+</button>
+            <PlusButton clickHandler={this.increase}/>
           </div>
         );
       }
     });
+
+
+    {/* adding event listeners */}
+
+    var Something = React.createClass({
+      handleMyEvent: function(e) {
+         {/* Do something */}
+      },
+      componentDidMount: function() {
+        window.addEventListener("someEvent", this.handleMyEvent);
+      },
+      componentWillUnmount: function() {
+        window.removeEventListener("someEvent", this.handleMyEvent);
+      },
+      render: function() {
+          return (
+            <div>Hello!</div>
+          );
+        }
+    }); 
 
     ReactDOM.render(
       <div>
