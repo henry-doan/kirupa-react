@@ -2,10 +2,12 @@
 <html>
   
 <head>
+  <title>Simple Spa</title>
+
   <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
   <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-  
+  <script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
   <style>
   
   </style>
@@ -19,11 +21,44 @@
   
   <script type="text/babel">
     var destination = document.querySelector("#container");
+
+    var Home = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <h2>HELLO</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        );
+      }
+    });
+
+    var App = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <h1>Simple SPA</h1>
+            <ul className="header">
+              <li>Home</li>
+              <li>Stuff</li>
+              <li>Contact</li>
+            </ul>
+            <div className="content">
+              <Home/>
+            </div>
+          </div>
+        )
+      }
+    });
   
     ReactDOM.render(
-      <div>
-        Hello!
-      </div>,
+      <ReactRouter.Router>
+        <ReactRouter.Route path="/" component={App}>
+
+        </ReactRouter.Route>
+      </ReactRouter.Router>,
       destination
     );
   </script>
