@@ -52,6 +52,10 @@
     .content li {
       margin-bottom: 10px;
     }
+
+    .active {
+      background-color: #0099FF;
+    }
   </style>
 </head>
   
@@ -85,15 +89,45 @@
       }
     });
 
+    var Contact = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <h2>Got Questions?</h2>
+            <p>The easiest thing to do is to google it, <a href="https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwiKnJLpmcnPAhVJ9WMKHbRsAYkQPAgD">Google</a></p>
+            <p>(Not A Sponsor)</p>
+          </div>
+        );
+      }
+    });
+
+    var Stuff = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <h2>Stuff</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit:</p>
+            <ol>
+              <li>in culpa</li>
+              <li>qui officia</li>
+              <li>deserunt mollit</li>
+              <li>anim id</li>
+              <li>est laborum</li>
+            </ol>
+          </div>
+        );
+      }
+    });
+
     var App = React.createClass({
       render: function() {
         return (
           <div>
             <h1>Simple SPA</h1>
             <ul className="header">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/stuff">Stuff</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+              <li><Link to="/stuff" activeClassName="active">Stuff</Link></li>
+              <li><Link to="/contact" activeClassName="active">Contact</Link></li>
             </ul>
             <div className="content">
               {this.props.children}
@@ -106,7 +140,9 @@
     ReactDOM.render(
       <Router>
         <Route path="/" component={App}>
-        <IndexRoute component={Home}/>
+          <IndexRoute component={Home}/>
+          <Route path="stuff" component={Stuff} />
+          <Route path="contact" component={Contact} />
         </Route>
       </Router>,
       destination
